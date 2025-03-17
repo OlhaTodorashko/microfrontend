@@ -8,10 +8,11 @@ module.exports = {
   },
   plugins : [
     new ModuleFederationPlugin({ //
-      name: 'products',
-      filename: 'remoteEntry.js',
+      name: 'products', // should be identical to Host ModuleFederationPlugin: '!!!products!!!@http://localhost:8081/remoteEntry.js'
+      filename: 'remoteEntry.js', // manifest file - file with all exposes filenames aliases aka `road map for webpack`
       exposes: {
-        './ProductsIndex': './src/index'
+        // which files going to be accessible to Host
+        './ProductsIndex': './src/index' // module name `ProductsIndex` on path `./src/index`
       }
     }),
     new HtmlWebpackPlugin({ // insert script tag into index.html
