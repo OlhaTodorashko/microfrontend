@@ -14,6 +14,11 @@ module.exports = {
         './CartShow': './src/index'
       },
       shared: ['faker'],
+      // shared: { // do not allow different version compatibility
+      //   faker: {
+      //     singleton: true
+      //   }
+      // }
     }),
     new HtmlWebpackPlugin({
       template: './public/index.html',
