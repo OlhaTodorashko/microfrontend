@@ -13,7 +13,8 @@ module.exports = {
       exposes: {
         // which files going to be accessible to Host - alias name
         './ProductsIndex': './src/index' // module name `ProductsIndex` on path `./src/index`
-      }
+      },
+      shared: ['faker'],
     }),
     new HtmlWebpackPlugin({ // insert script tag into index.html
       template: './public/index.html',
