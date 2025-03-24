@@ -1,4 +1,7 @@
 import React from 'react';
+import { mount as mountMarketingApp } from 'marketing/MarketingApp';
+
+console.log(mountMarketingApp)
 
 export default () => {
   return (
