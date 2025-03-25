@@ -1,10 +1,12 @@
 import React from 'react';
-import { mount as mountMarketingApp } from 'marketing/MarketingApp';
-
-console.log(mountMarketingApp)
+import MarketingApp from "./components/MarketingApp";
 
 export default () => {
   return (
-    <h1>Container up and run</h1>
+    <div>
+      <h1>Container up and running</h1>
+      <hr />
+      <MarketingApp />
+    </div>
   )
 };
