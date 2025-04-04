@@ -2,14 +2,14 @@ const { merge } = require('webpack-merge');
 const ModuleFederationPlugin = require('webpack/lib/container/ModuleFederationPlugin');
 const commonConfig = require('./webpack.common');
 const packageJson = require('../package.json');
-
-
-// const domain = process.env.
+const path = require("path");
 
 const prodConfig = {
   mode: 'production',
   output: {
-    filename: '[name].[contenthash].js'
+    path: path.resolve(__dirname, "dist/marketing/latest"),
+    filename: '[name].[contenthash].js',
+    publicPath: '/marketing/latest/' // for remoteEntry.js
   },
   plugins: [
     new ModuleFederationPlugin({

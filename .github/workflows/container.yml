@@ -1,4 +1,4 @@
-name: deploy-container
+name: deploy-container on push
 
 on:
   push:
@@ -21,7 +21,8 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v4  # Uses existed GitHub Action | actions/checkout@v2
+      - name: Checkout repository
+        uses: actions/checkout@v4  # Uses existed GitHub Action | actions/checkout@v2
 
       - name: Install Node.js
         uses: actions/setup-node@v4
@@ -33,6 +34,8 @@ jobs:
 
       - name: Project build
         run: npm run build
+        env:
+          PRODUCTION_DOMAIN: ${{ secrets.PRODUCTION_DOMAIN }}
 
       - name: Setup GitHub Pages
         uses: actions/configure-pages@v5
@@ -40,7 +43,7 @@ jobs:
       - name: Load artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: "dist"  # or "build" for React
+          path: "dist/container/latest"  # or "build" for React
 
       - name: Deploy on GitHub Pages
         uses: actions/deploy-pages@v4
