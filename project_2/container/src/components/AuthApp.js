@@ -1,5 +1,5 @@
 import React, { useRef, useEffect } from 'react';
-import { mount as mountMarketingApp } from 'marketing/MarketingApp';
+import { mount as mountAuthApp } from 'auth/AuthApp';
 import { useHistory } from "react-router-dom";
 
 export default () => {
@@ -8,13 +8,14 @@ export default () => {
 
   // on mount phase
   useEffect(() => {
-    const { onParentNavigate } = mountMarketingApp(ref.current, {
+    const { onParentNavigate } = mountAuthApp(ref.current, {
+      initialPath: containerHistory.location.pathname,
       // onNavigate: ({ pathname: nextPathname }) => { <- object destruction with property `pathname` rename to `nextPathname`
-      onNavigate: (marketingAppLocation) => {
+      onNavigate: (authAppLocation) => {
         const { pathname} = containerHistory.location;
 
-        if (pathname !== marketingAppLocation.pathname) { // avoid infinite update
-          containerHistory.push(marketingAppLocation.pathname);
+        if (pathname !== authAppLocation.pathname) { // avoid infinite update
+          containerHistory.push(authAppLocation.pathname);
         }
       }
     });
