@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import { createMemoryHistory, createBrowserHistory } from 'history';
 import App from './App';
 
-const mount = (el, { onNavigate, defaultHistory, initialPath }) => {
+const mount = (el, { onSignIn, onNavigate, defaultHistory, initialPath }) => {
   const authHistory = defaultHistory || createMemoryHistory({
     initialEntries: [initialPath] // without initial path component resolves under '/' - no visual content on page
   });
@@ -12,7 +12,7 @@ const mount = (el, { onNavigate, defaultHistory, initialPath }) => {
     authHistory.listen(onNavigate);
   }
 
-  ReactDOM.render(<App history={authHistory} />, el);
+  ReactDOM.render(<App history={authHistory} onSignIn={onSignIn} />, el);
 
   return {
     onParentNavigate(containerLocation) {

@@ -1,15 +1,15 @@
-name: deploy-marketing on push
+name: deploy-auth on push
 
 on:
   push:
     branches:
       - main
     paths:
-      - 'project_2/marketing/**'
+      - 'project_2/auth/**'
 
 defaults:
   run:
-    working-directory: project_2/marketing
+    working-directory: project_2/auth
 
 permissions:
   contents: read
@@ -41,7 +41,7 @@ jobs:
       - name: Load artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: "dist/marketing/latest"  # or "build" for React
+          path: "dist/auth/latest"  # or "build" for React
 
       - name: Deploy on GitHub Pages
         uses: actions/deploy-pages@v4

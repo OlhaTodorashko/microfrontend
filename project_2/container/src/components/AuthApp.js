@@ -2,13 +2,14 @@ import React, { useRef, useEffect } from 'react';
 import { mount as mountAuthApp } from 'auth/AuthApp';
 import { useHistory } from "react-router-dom";
 
-export default () => {
+export default ({ onSignIn }) => {
   const ref = useRef(null);
   const containerHistory = useHistory();
 
   // on mount phase
   useEffect(() => {
     const { onParentNavigate } = mountAuthApp(ref.current, {
+      onSignIn,
       initialPath: containerHistory.location.pathname,
       // onNavigate: ({ pathname: nextPathname }) => { <- object destruction with property `pathname` rename to `nextPathname`
       onNavigate: (authAppLocation) => {
