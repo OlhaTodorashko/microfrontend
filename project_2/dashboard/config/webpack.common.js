@@ -11,10 +11,8 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.(png|jpe?g|gif|woff|swg|eot|ttf)$/i,
-        use: [
-          { loader: 'file-loader' }
-        ]
+        test: /\.(png|jpe?g|gif|woff|svg|eot|ttf)$/i,
+        use: [{ loader: 'file-loader' }]
       },
       {
         test: /\.vue$/,
