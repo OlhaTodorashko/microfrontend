@@ -13,7 +13,8 @@ export default () => {
       onNavigate: (marketingAppLocation) => {
         const { pathname} = containerHistory.location;
 
-        if (pathname !== marketingAppLocation.pathname) { // avoid infinite update
+        // avoid infinite update
+        if (pathname !== marketingAppLocation.pathname) {
           containerHistory.push(marketingAppLocation.pathname);
         }
       }
