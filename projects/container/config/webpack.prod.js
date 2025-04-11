@@ -11,7 +11,7 @@ const prodConfig = {
   output: {
     path: path.resolve(__dirname, "../dist/container/latest"),
     filename: '[name].[contenthash].js', // template name string, [contenthash] - cache issues e.g. index.87d4.js
-    publicPath: '/container/latest/'
+    publicPath: `/microfrontend/container/latest/`
   },
   plugins: [
     new ModuleFederationPlugin({
