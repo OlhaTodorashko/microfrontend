@@ -5,11 +5,11 @@ on:
     branches:
       - main
     paths:
-      - 'project_2/auth/**'
+      - 'projects/auth/**'
 
 defaults:
   run:
-    working-directory: project_2/auth
+    working-directory: projects/auth
 
 permissions:
   contents: read

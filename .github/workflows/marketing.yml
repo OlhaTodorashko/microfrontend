@@ -5,11 +5,11 @@ on:
     branches:
       - main
     paths:
-      - 'project_2/marketing/**'
+      - 'projects/marketing/**'
 
 defaults:
   run:
-    working-directory: project_2/marketing
+    working-directory: projects/marketing
 
 permissions:
   contents: read

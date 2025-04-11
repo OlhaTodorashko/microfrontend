@@ -5,11 +5,11 @@ on:
     branches:
       - main
     paths:
-      - 'project_2/container/**'
+      - 'projects/container/**'
 
 defaults:
   run:
-    working-directory: project_2/container
+    working-directory: projects/container
 
 permissions:
   contents: read

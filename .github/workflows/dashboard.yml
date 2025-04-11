@@ -5,11 +5,11 @@ on:
     branches:
       - main
     paths:
-      - 'project_2/dashboard/**'
+      - 'projects/dashboard/**'
 
 defaults:
   run:
-    working-directory: project_2/dashboard
+    working-directory: projects/dashboard
 
 permissions:
   contents: read
