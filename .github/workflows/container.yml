@@ -39,7 +39,7 @@ jobs:
           PRODUCTION_DOMAIN: ${{ secrets.PRODUCTION_DOMAIN }}
 
       - name: List generated files
-        run: ls -la config/dist/container/latest
+        run: ls -la dist/container/latest
 
       - name: Setup GitHub Pages
         uses: actions/configure-pages@v5
@@ -47,7 +47,7 @@ jobs:
       - name: Load artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: "projects/container/dist/container/latest/"  # or "build" for React
+          path: "projects/container/dist/"  # or "build" for React
 
       - name: Deploy on GitHub Pages
         uses: actions/deploy-pages@v4

@@ -9,7 +9,7 @@ const domain = process.env.PRODUCTION_DOMAIN;
 const prodConfig = {
   mode: 'production',
   output: {
-    path: path.resolve(__dirname, "dist/container/latest"),
+    path: path.resolve(__dirname, "../dist/container/latest"),
     filename: '[name].[contenthash].js', // template name string, [contenthash] - cache issues e.g. index.87d4.js
     publicPath: '/container/latest/'
   },
