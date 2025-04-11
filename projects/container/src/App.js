@@ -14,7 +14,7 @@ const generateClassName = createGenerateClassName({
   productionPrefix: 'co'
 });
 
-const history = createBrowserHistory(); // get access to browser history fot manipulation
+const history = createBrowserHistory(); // get access to browser history for manipulation
 
 export default () => {
   const [isSignIn, setIsSignIn] = useState(false);
