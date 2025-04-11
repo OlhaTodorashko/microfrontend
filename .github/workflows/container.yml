@@ -39,7 +39,7 @@ jobs:
           PRODUCTION_DOMAIN: ${{ secrets.PRODUCTION_DOMAIN }}
 
       - name: List generated files
-        run: ls -la
+        run: ls -la config/dist/container/latest
 
       - name: Setup GitHub Pages
         uses: actions/configure-pages@v5
