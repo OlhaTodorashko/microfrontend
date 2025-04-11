@@ -38,6 +38,9 @@ jobs:
         env:
           PRODUCTION_DOMAIN: ${{ secrets.PRODUCTION_DOMAIN }}
 
+      - name: List generated files
+        run: ls -la
+
       - name: Setup GitHub Pages
         uses: actions/configure-pages@v5
 
