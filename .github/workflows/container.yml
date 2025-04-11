@@ -51,6 +51,8 @@ jobs:
 
       - name: Deploy on GitHub Pages
         uses: actions/deploy-pages@v4
+        environment:
+          name: github-pages
 
 #      - name: Configure AWS CLI (Official Action)
 #        uses: aws-actions/configure-aws-credentials@v2
