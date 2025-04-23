@@ -46,6 +46,7 @@ jobs:
           PRODUCTION_DOMAIN: ${{ secrets.PRODUCTION_DOMAIN }}
 
       - name: Marketing - move build files into '/marketing/latest' directory
+        working-directory: projects/marketing
         run: |
           mkdir marketing
           cd marketing/
