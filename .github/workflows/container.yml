@@ -1,12 +1,12 @@
 name: deploy-container on push
 
-on:
+on: # trigger on [push, workflow_dispatch]
   push:
     branches:
       - main
     paths:
       - 'projects/container/**'
-  workflow_dispatch:
+  workflow_dispatch: # allow manual trigger workflow. Other: repository_dispatch (REST API trigger workflow), schedule (workflow is scheduled), workflow_call (can be called by other workflow) - github actions events
 
 defaults:
   run:
@@ -18,22 +18,45 @@ permissions:
   id-token: write
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
+  build: # name of job
+    runs-on: ubuntu-latest # env
     environment:
       name: github-pages
 
-    steps:
+    steps: # key value pairs, step starts with `-`
+      - name: Output Github context
+        run: echo "${{ toJSON(github) }}" # GitHub action context, GitHub actions expressions
+
       - name: Checkout repository
-        uses: actions/checkout@v4  # Uses existed GitHub Action | actions/checkout@v2
+        uses: actions/checkout@v4  # Uses existed GitHub Action | actions/checkout@v4 https://github.com/marketplace/actions/checkout
 
       - name: Install Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 18
 
-      - name: Install dependents
-        run: npm install
+      - name: Marketing - Install dependents
+        run: npm ci
+        working-directory: projects/marketing
+
+      - name: Marketing build
+        run: npm run build
+        working-directory: projects/marketing
+        env:
+          PRODUCTION_DOMAIN: ${{ secrets.PRODUCTION_DOMAIN }}
+
+      - name: Dashboard - Install dependents
+        run: npm ci
+        working-directory: projects/dashboard
+
+      - name: Dashboard build
+        run: npm run build
+        working-directory: projects/dashboard
+        env:
+          PRODUCTION_DOMAIN: ${{ secrets.PRODUCTION_DOMAIN }}
+
+      - name: Container - Install dependents
+        run: npm ci # ci - uses package-lock.json dependencies or use `npm install`
 
       - name: Project build
         run: npm run build
@@ -41,7 +64,7 @@ jobs:
           PRODUCTION_DOMAIN: ${{ secrets.PRODUCTION_DOMAIN }}
 
       - name: List generated files
-        run: ls -la dist/container/latest
+        run: ls -la dist/ #dist/container/latest
 
       - name: Setup GitHub Pages
         uses: actions/configure-pages@v5
