@@ -6,6 +6,7 @@ on:
       - main
     paths:
       - 'projects/marketing/**'
+  workflow_dispatch:
 
 defaults:
   run:
