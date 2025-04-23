@@ -37,7 +37,7 @@ jobs:
 
       - name: Container - Install dependents and build
         run: |
-          npm install # ci - uses package-lock.json dependencies or use `npm install`
+          npm ci # ci - uses package-lock.json dependencies or use `npm install`
           npm run build
         env:
           PRODUCTION_DOMAIN: ${{ secrets.PRODUCTION_DOMAIN }}
@@ -45,7 +45,7 @@ jobs:
       - name: Marketing - Install dependents and build
         working-directory: projects/marketing
         run: |
-          npm install
+          npm ci
           npm run build
         env:
             PRODUCTION_DOMAIN: ${{ secrets.PRODUCTION_DOMAIN }}
@@ -58,7 +58,7 @@ jobs:
       - name: Dashboard - Install dependents and build
         working-directory: projects/dashboard
         run: |
-          npm install
+          npm ci
           npm run build
         env:
           PRODUCTION_DOMAIN: ${{ secrets.PRODUCTION_DOMAIN }}
@@ -71,7 +71,7 @@ jobs:
       - name: Auth - Install dependents and build
         working-directory: projects/auth
         run: |
-          npm install
+          npm ci
           npm run build
         env:
           PRODUCTION_DOMAIN: ${{ secrets.PRODUCTION_DOMAIN }}
