@@ -43,13 +43,6 @@ jobs:
         env:
           PRODUCTION_DOMAIN: ${{ secrets.PRODUCTION_DOMAIN }}
 
-      - name: List generated files
-        run: |
-              ls 
-              ls dist
-              ls dist/container
-              ls dist/container/latest
-
       - name: Marketing - Install dependents
         run: npm install
         working-directory: projects/marketing
@@ -73,6 +66,15 @@ jobs:
         working-directory: projects/dashboard
         env:
           PRODUCTION_DOMAIN: ${{ secrets.PRODUCTION_DOMAIN }}
+
+      - name: List generated files
+        run: |
+              ls 
+              ls dist
+              ls dist/container
+              ls dist/container/latest
+
+
       - name: Setup GitHub Pages
         uses: actions/configure-pages@v5
 
