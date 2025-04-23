@@ -88,7 +88,7 @@ jobs:
       - name: Load artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: "projects/container/dist/"  # or "build" for React
+          path: "projects/container/dist/container/latest/"  # or "build" for React
 
       - name: Deploy on GitHub Pages
         uses: actions/deploy-pages@v4

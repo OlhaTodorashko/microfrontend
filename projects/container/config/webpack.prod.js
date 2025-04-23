@@ -11,13 +11,13 @@ const prodConfig = {
   output: {
     path: path.resolve(__dirname, "../dist/container/latest"),
     filename: '[name].[contenthash].js', // template name string, [contenthash] - cache issues e.g. index.87d4.js
-    publicPath: `/microfrontend/container/latest/`
+    publicPath: `/microfrontend/`
   },
   plugins: [
     new ModuleFederationPlugin({
       name: 'container',
       remotes: {
-        marketing: `marketing@${domain + '/container/latest'}/marketing/latest/RemoteEntry.js`,
+        marketing: `marketing@${domain}/marketing/latest/RemoteEntry.js`,
         auth: `auth@${domain}/auth/latest/RemoteEntry.js`,
         dashboard: `dashboard@${domain}/dashboard/latest/RemoteEntry.js`
       },
