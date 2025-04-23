@@ -73,10 +73,10 @@ jobs:
 
       - name: List generated files
         run: |
-              ls -la 
-              ls -la dist
-              ls -la dist/container
-              ls -la dist/container/latest
+              ls 
+              ls dist
+              ls dist/container
+              ls dist/container/latest
 
       - name: Setup GitHub Pages
         uses: actions/configure-pages@v5
