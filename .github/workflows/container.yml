@@ -47,6 +47,7 @@ jobs:
 
       - name: Marketing - move build files into '/marketing/latest' directory
         run: |
+            ls
             mkdir marketing
             cd marketing/
             mkdir latest/
