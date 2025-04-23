@@ -51,6 +51,9 @@ jobs:
         working-directory: projects/marketing
         run: |
           ls
+          cd ..
+          cd container
+          ls
 #          mkdir marketing
 #          cd marketing/
 #          mkdir latest/
