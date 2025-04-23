@@ -1,11 +1,11 @@
 name: deploy-marketing on push
 
 on:
-  push:
-    branches:
-      - main
-    paths:
-      - 'projects/marketing/**'
+#  push:
+#    branches:
+#      - main
+#    paths:
+#      - 'projects/marketing/**'
   workflow_dispatch:
 
 defaults:

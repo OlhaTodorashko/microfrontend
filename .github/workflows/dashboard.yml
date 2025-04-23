@@ -1,11 +1,12 @@
 name: deploy-dashboard on push
 
 on:
-  push:
-    branches:
-      - main
-    paths:
-      - 'projects/dashboard/**'
+#  push:
+#    branches:
+#      - main
+#    paths:
+#      - 'projects/dashboard/**'
+  workflow_dispatch:
 
 defaults:
   run:

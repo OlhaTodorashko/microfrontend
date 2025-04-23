@@ -4,14 +4,12 @@ const commonConfig = require('./webpack.common');
 const packageJson = require('../package.json');
 const path = require("path");
 
-const domain = (process.env.PRODUCTION_DOMAIN && '/microfrontend') || '';
-
 const prodConfig = {
   mode: 'production',
   output: {
     path: path.resolve(__dirname, "../dist/marketing/latest"),
     filename: '[name].[contenthash].js',
-    publicPath: `/microfrontend/marketing/latest/` // for remoteEntry.js
+    publicPath: '/microfrontend/marketing/latest/' // for remoteEntry.js
   },
   plugins: [
     new ModuleFederationPlugin({

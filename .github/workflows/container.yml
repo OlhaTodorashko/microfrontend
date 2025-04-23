@@ -49,12 +49,11 @@ jobs:
           npm run build
         env:
             PRODUCTION_DOMAIN: ${{ secrets.PRODUCTION_DOMAIN }}
-
       - name: Marketing - move build files into 'container/latest/marketing/latest' directory
         working-directory: projects/marketing
         run: |
           ls dist/
-          cp -r dist/* ../container/dist/container/latest
+          mv dist/* ../container/dist/container/latest
 
       - name: Dashboard - Install dependents and build
         working-directory: projects/dashboard
@@ -63,12 +62,24 @@ jobs:
           npm run build
         env:
           PRODUCTION_DOMAIN: ${{ secrets.PRODUCTION_DOMAIN }}
-
       - name: Dashboard - move build files into 'container/latest/marketing/latest' directory
         working-directory: projects/dashboard
         run: |
           ls dist/
-          cp -r dist/* ../container/dist/container/latest
+          mv dist/* ../container/dist/container/latest
+
+      - name: Auth - Install dependents and build
+        working-directory: projects/auth
+        run: |
+          npm install
+          npm run build
+        env:
+          PRODUCTION_DOMAIN: ${{ secrets.PRODUCTION_DOMAIN }}
+      - name: Dashboard - move build files into 'container/latest/auth/latest' directory
+        working-directory: projects/auth
+        run: |
+          ls dist/
+          mv dist/* ../container/dist/container/latest    
 
       - name: List generated files
         run: |
