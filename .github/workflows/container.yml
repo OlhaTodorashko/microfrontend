@@ -50,6 +50,7 @@ jobs:
             mkdir marketing
             cd marketing/
             mkdir latest/
+            cd ../..
             mv dist/* marketing/latest/
 
       - name: Dashboard - Install dependents
