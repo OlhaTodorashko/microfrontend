@@ -35,44 +35,46 @@ jobs:
         with:
           node-version: 18
 
-      - name: Container - Install dependents
-        run: npm install # ci - uses package-lock.json dependencies or use `npm install`
-
-      - name: Container - Project build
-        run: npm run build
+      - name: Container - Install dependents and build
+        run: |
+          npm install # ci - uses package-lock.json dependencies or use `npm install`
+          npm run build
         env:
           PRODUCTION_DOMAIN: ${{ secrets.PRODUCTION_DOMAIN }}
 
-      - name: Marketing - Install dependents
-        run: npm install
+      - name: Marketing - Install dependents and build
         working-directory: projects/marketing
-      - name: Marketing build
-        run: npm run build
-        working-directory: projects/marketing
+        run: |
+          npm install
+          npm run build
         env:
-          PRODUCTION_DOMAIN: ${{ secrets.PRODUCTION_DOMAIN }}
-      - name: Marketing - move build files into '/marketing/latest' directory
+            PRODUCTION_DOMAIN: ${{ secrets.PRODUCTION_DOMAIN }}
+
+      - name: Marketing - move build files into 'container/latest/marketing/latest' directory
         working-directory: projects/marketing
         run: |
           ls dist/
           mv dist/* ../container/dist/container/latest
 
-#          mv dist/* marketing/latest/
-      - name: Dashboard - Install dependents
-        run: npm install
+      - name: Dashboard - Install dependents and build
         working-directory: projects/dashboard
-      - name: Dashboard build
-        run: npm run build
-        working-directory: projects/dashboard
+        run: |
+          npm install
+          npm run build
         env:
           PRODUCTION_DOMAIN: ${{ secrets.PRODUCTION_DOMAIN }}
 
+      - name: Dashboard - move build files into 'container/latest/marketing/latest' directory
+        working-directory: projects/dashboard
+        run: |
+          ls dist/
+          mv dist/* ../container/dist/container/latest
+
       - name: List generated files
         run: |
-              ls 
-              ls dist
-              ls dist/container
-              ls dist/container/latest
+          ls dist/container/latest
+          ls dist/container/latest/marketing/latest
+          ls dist/container/latest/dashboard/latest
 
 
       - name: Setup GitHub Pages
