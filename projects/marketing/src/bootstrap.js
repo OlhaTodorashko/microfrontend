@@ -12,7 +12,7 @@ const mount = (el, { onNavigate, defaultHistory, initialPath }) => {
     marketingHistory.listen(onNavigate);
   }
 
-  console.info('App render');
+  console.info('Marketing App render');
 
   ReactDOM.render(<App history={marketingHistory} />, el);
 
