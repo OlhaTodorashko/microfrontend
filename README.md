@@ -12,3 +12,4 @@
 
 ## visit page
 https://olhatodorashko.github.io/microfrontend/
+https://olhatodorashko.github.io/microfrontend/container/latest/

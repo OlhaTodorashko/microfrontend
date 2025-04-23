@@ -69,6 +69,10 @@ jobs:
               ls -la dist
               ls -la dist/container
               ls -la dist/container/latest
+              ls -la dist/marketing
+              ls -la dist/marketing/latest
+              ls -la dist/dashboard
+              ls -la dist/dashboard/latest
 
       - name: Setup GitHub Pages
         uses: actions/configure-pages@v5
