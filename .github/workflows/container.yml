@@ -43,6 +43,13 @@ jobs:
         env:
           PRODUCTION_DOMAIN: ${{ secrets.PRODUCTION_DOMAIN }}
 
+      - name: List generated files
+        run: |
+              ls 
+              ls dist
+              ls dist/container
+              ls dist/container/latest
+
       - name: Marketing - Install dependents
         run: npm install
         working-directory: projects/marketing
@@ -51,32 +58,21 @@ jobs:
         working-directory: projects/marketing
         env:
           PRODUCTION_DOMAIN: ${{ secrets.PRODUCTION_DOMAIN }}
-
       - name: Marketing - move build files into '/marketing/latest' directory
         working-directory: projects/marketing
         run: |
           ls dist/
-          cp -r dist/* projects/container/dist/container/latest
+          mv dist/* ../container/dist/container/latest
 
 #          mv dist/* marketing/latest/
-
       - name: Dashboard - Install dependents
         run: npm install
         working-directory: projects/dashboard
-
       - name: Dashboard build
         run: npm run build
         working-directory: projects/dashboard
         env:
           PRODUCTION_DOMAIN: ${{ secrets.PRODUCTION_DOMAIN }}
-
-      - name: List generated files
-        run: |
-              ls 
-              ls dist
-              ls dist/container
-              ls dist/container/latest
-
       - name: Setup GitHub Pages
         uses: actions/configure-pages@v5
 
