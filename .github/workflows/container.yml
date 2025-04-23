@@ -73,9 +73,14 @@ jobs:
       - name: List generated files
         run: |
           ls dist/container/latest
-          ls dist/container/latest/marketing/latest
-          ls dist/container/latest/dashboard/latest
 
+      - name: List generated files
+        run: |
+          ls dist/container/latest/marketing/latest
+
+      - name: List generated files
+        run: |
+          ls dist/container/latest/dashboard/latest
 
       - name: Setup GitHub Pages
         uses: actions/configure-pages@v5
