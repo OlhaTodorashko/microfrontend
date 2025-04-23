@@ -5,7 +5,7 @@ on: # trigger on [push, workflow_dispatch]
     branches:
       - main
     paths:
-      - 'projects/container/**'
+      - 'projects/**'
   workflow_dispatch: # allow manual trigger workflow. Other: repository_dispatch (REST API trigger workflow), schedule (workflow is scheduled), workflow_call (can be called by other workflow) - github actions events
 
 defaults:
@@ -82,16 +82,16 @@ jobs:
           mv dist/* ../container/dist/container/latest    
 
       - name: List generated files
-        run: |
-          ls dist/container/latest
+        run: ls dist/container/latest
 
       - name: List generated files
-        run: |
-          ls dist/container/latest/marketing/latest
+        run: ls dist/container/latest/marketing/latest
 
       - name: List generated files
-        run: |
-          ls dist/container/latest/dashboard/latest
+        run: ls dist/container/latest/dashboard/latest
+
+      - name: List generated files
+        run: ls dist/container/latest/auth/latest
 
       - name: Setup GitHub Pages
         uses: actions/configure-pages@v5

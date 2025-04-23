@@ -9,7 +9,7 @@ const prodConfig = {
   output: {
     path: path.resolve(__dirname, "../dist/auth/latest"),
     filename: '[name].[contenthash].js',
-    publicPath: '/auth/latest/' // for remoteEntry.js
+    publicPath: '/microfrontend/auth/latest/' // for remoteEntry.js
   },
   plugins: [
     new ModuleFederationPlugin({
