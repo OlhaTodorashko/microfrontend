@@ -40,7 +40,9 @@ jobs:
         working-directory: projects/marketing
 
       - name: Marketing build
-        run: npm run build
+        run: |
+          npm run build
+          ls
         working-directory: projects/marketing
         env:
           PRODUCTION_DOMAIN: ${{ secrets.PRODUCTION_DOMAIN }}
@@ -49,13 +51,13 @@ jobs:
         working-directory: projects/marketing
         run: |
           ls
-          mkdir marketing
-          cd marketing/
-          mkdir latest/
-          cd ..
-          ls
-          ls dist/
-          mv dist/* marketing/latest/
+#          mkdir marketing
+#          cd marketing/
+#          mkdir latest/
+#          cd ..
+#          ls
+#          ls dist/
+#          mv dist/* marketing/latest/
 
       - name: Dashboard - Install dependents
         run: npm install
