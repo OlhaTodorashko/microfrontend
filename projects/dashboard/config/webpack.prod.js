@@ -7,7 +7,7 @@ const path = require("path");
 const prodConfig = {
   mode: 'production',
   output: {
-    path: path.resolve(__dirname, "dist/dashboard/latest"),
+    path: path.resolve(__dirname, "../dist/dashboard/latest"),
     filename: '[name].[contenthash].js',
     publicPath: '/dashboard/latest/' // for remoteEntry.js
   },

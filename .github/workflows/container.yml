@@ -40,9 +40,7 @@ jobs:
         working-directory: projects/marketing
 
       - name: Marketing build
-        run: |
-          npm run build
-          ls
+        run: npm run build
         working-directory: projects/marketing
         env:
           PRODUCTION_DOMAIN: ${{ secrets.PRODUCTION_DOMAIN }}
@@ -50,8 +48,6 @@ jobs:
       - name: Marketing - move build files into '/marketing/latest' directory
         working-directory: projects/marketing
         run: |
-          ls
-          cd config
           ls
 #          mkdir marketing
 #          cd marketing/
