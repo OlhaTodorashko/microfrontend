@@ -36,7 +36,7 @@ jobs:
           node-version: 18
 
       - name: Marketing - Install dependents
-        run: npm ci
+        run: npm install
         working-directory: projects/marketing
 
       - name: Marketing build
@@ -47,15 +47,16 @@ jobs:
 
       - name: Marketing - move build files into '/marketing/latest' directory
         run: |
-            ls
-            mkdir marketing
-            cd marketing/
-            mkdir latest/
-            cd ../..
-            mv dist/* marketing/latest/
+          mkdir marketing
+          cd marketing/
+          mkdir latest/
+          cd ../..
+          ls
+          ls dist/
+          mv dist/* marketing/latest/
 
       - name: Dashboard - Install dependents
-        run: npm ci
+        run: npm install
         working-directory: projects/dashboard
 
       - name: Dashboard build
@@ -65,7 +66,7 @@ jobs:
           PRODUCTION_DOMAIN: ${{ secrets.PRODUCTION_DOMAIN }}
 
       - name: Container - Install dependents
-        run: npm ci # ci - uses package-lock.json dependencies or use `npm install`
+        run: npm install # ci - uses package-lock.json dependencies or use `npm install`
 
       - name: Project build
         run: npm run build
