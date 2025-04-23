@@ -45,6 +45,13 @@ jobs:
         env:
           PRODUCTION_DOMAIN: ${{ secrets.PRODUCTION_DOMAIN }}
 
+      - name: Marketing - move build files into '/marketing/latest' directory
+        run: |
+            mkdir marketing
+            cd marketing/
+            mkdir latest/
+            mv dist/* marketing/latest/
+
       - name: Dashboard - Install dependents
         run: npm ci
         working-directory: projects/dashboard
