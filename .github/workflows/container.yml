@@ -50,7 +50,7 @@ jobs:
           mkdir marketing
           cd marketing/
           mkdir latest/
-          cd ../..
+          cd ..
           ls
           ls dist/
           mv dist/* marketing/latest/
