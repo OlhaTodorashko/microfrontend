@@ -4,7 +4,7 @@ const commonConfig = require('./webpack.common');
 const packageJson = require('../package.json');
 const path = require("path");
 
-const domain = (process.env.PRODUCTION_DOMAIN && '/microfrontend') || '';
+const domain = process.env.PRODUCTION_DOMAIN;
 
 const prodConfig = {
   mode: 'production',
