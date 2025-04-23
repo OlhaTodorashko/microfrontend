@@ -42,7 +42,7 @@ jobs:
       - name: Load artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: "projects/marketing/dist/"  # or "build" for React
+          path: "./dist/marketing/latest"  # or "build" for React
 
       - name: Deploy on GitHub Pages
         uses: actions/deploy-pages@v4
