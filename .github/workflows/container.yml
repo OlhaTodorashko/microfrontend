@@ -24,8 +24,8 @@ jobs:
       name: github-pages
 
     steps: # key value pairs, step starts with `-`
-      - name: Output Github context
-        run: echo "${{ toJSON(github) }}" # GitHub action context, GitHub actions expressions
+#      - name: Output Github context
+#        run: echo "${{ toJSON(github) }}" # GitHub action context, GitHub actions expressions
 
       - name: Checkout repository
         uses: actions/checkout@v4  # Uses existed GitHub Action | actions/checkout@v4 https://github.com/marketplace/actions/checkout
