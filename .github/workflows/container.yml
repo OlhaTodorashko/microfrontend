@@ -54,7 +54,7 @@ jobs:
         working-directory: projects/marketing
         run: |
           ls dist/
-          mv dist/* ../container/dist/container/latest
+          cp -r dist/* ../container/dist/container/latest
 
       - name: Dashboard - Install dependents and build
         working-directory: projects/dashboard
@@ -68,7 +68,7 @@ jobs:
         working-directory: projects/dashboard
         run: |
           ls dist/
-          mv dist/* ../container/dist/container/latest
+          cp -r dist/* ../container/dist/container/latest
 
       - name: List generated files
         run: |
