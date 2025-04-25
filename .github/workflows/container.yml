@@ -37,7 +37,6 @@ jobs:
         env:
           PRODUCTION_DOMAIN: ${{ secrets.PRODUCTION_DOMAIN }}
       - name: Upload artifact
-        working-directory: projects/marketing
         uses: actions/upload-artifact@v3
         with:
           name: dist-files-marketing
