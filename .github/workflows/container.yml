@@ -38,7 +38,7 @@ jobs:
           PRODUCTION_DOMAIN: ${{ secrets.PRODUCTION_DOMAIN }}
       - name: Upload artifact
         working-directory: projects/marketing
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-artifact@v3
         with:
           name: dist-files-marketing
           path: dist
@@ -61,7 +61,7 @@ jobs:
           PRODUCTION_DOMAIN: ${{ secrets.PRODUCTION_DOMAIN }}
       - name: Upload artifact
         working-directory: projects/auth
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-artifact@v3
         with:
           name: dist-files-auth
           path: dist
@@ -84,7 +84,7 @@ jobs:
           PRODUCTION_DOMAIN: ${{ secrets.PRODUCTION_DOMAIN }}
       - name: Upload artifact
         working-directory: projects/dashboard
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-artifact@v3
         with:
           name: dist-files-dashboard
           path: dist
@@ -110,7 +110,7 @@ jobs:
           ls dist/container/latest/dashboard/latest
           ls dist/container/latest/auth/latest
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-artifact@v3
         with:
           name: dist-files-container
           path: dist/container/latest/
@@ -132,7 +132,7 @@ jobs:
       - name: Load artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: "/"
+          path: "./"
 #          path: "projects/container/dist/container/latest/"  # or "build" for React
       - name: Deploy on GitHub Pages
         uses: actions/deploy-pages@v4
