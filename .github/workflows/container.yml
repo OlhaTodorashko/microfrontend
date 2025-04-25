@@ -32,7 +32,7 @@ jobs:
       - name: Install dependents and build
         working-directory: projects/marketing
         run: |
-          npm install
+          npm ci
           npm run build
         env:
           PRODUCTION_DOMAIN: ${{ secrets.PRODUCTION_DOMAIN }}
@@ -45,7 +45,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4  # Uses existed GitHub Action | actions/checkout@v4 https://github.com/marketplace/actions/checkout
+        uses: actions/checkout@v4
 
       - name: Install Node.js
         uses: actions/setup-node@v4
@@ -67,7 +67,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4  # Uses existed GitHub Action | actions/checkout@v4 https://github.com/marketplace/actions/checkout
+        uses: actions/checkout@v4
 
       - name: Install Node.js
         uses: actions/setup-node@v4
@@ -85,11 +85,11 @@ jobs:
         with:
           name: dist-files-dashboard
           path: projects/dashboard/dist
-  build-container: # name of job
-    runs-on: ubuntu-latest # env
+  build-container:
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4  # Uses existed GitHub Action | actions/checkout@v4 https://github.com/marketplace/actions/checkout
+        uses: actions/checkout@v4
       - name: Install Node.js
         uses: actions/setup-node@v4
         with:
@@ -114,29 +114,28 @@ jobs:
     steps:
       - name: Setup GitHub Pages
         uses: actions/configure-pages@v5
-      - name: Get artifacts marketing
+      - name: Marketing - get artifacts
         uses: actions/download-artifact@v4
         with:
           name: dist-files-marketing
-      - name: Get artifacts auth
+      - name: Auth - get artifacts
         uses: actions/download-artifact@v4
         with:
           name: dist-files-auth
-      - name: Get artifacts dashboard
+      - name: Dashboard - get artifacts
         uses: actions/download-artifact@v4
         with:
           name: dist-files-dashboard
-      - name: Get artifacts container
+      - name: Container - get artifacts
         uses: actions/download-artifact@v4
         with:
           name: dist-files-container
       - name: List generated files
         run: |
           ls
-      - name: Load artifact
+      - name: Load pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
           path: "./"
-#          path: "projects/container/dist/container/latest/"  # or "build" for React
       - name: Deploy on GitHub Pages
         uses: actions/deploy-pages@v4
