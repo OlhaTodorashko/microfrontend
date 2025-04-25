@@ -4,6 +4,8 @@ on: # trigger on [push, workflow_dispatch]
   push:
     branches:
       - main
+#      - 'dev-*' dev-new dev-this-is-new
+#      - 'feat/**' feat/new feat/new/button; ** allows many `/`
     paths:
       - 'projects/**'
   workflow_dispatch: # allow manual trigger workflow. Other: repository_dispatch (REST API trigger workflow), schedule (workflow is scheduled), workflow_call (can be called by other workflow) - github actions events
@@ -18,15 +20,31 @@ permissions:
   id-token: write
 
 jobs:
-  build: # name of job
-    runs-on: ubuntu-latest # env
-    environment:
-      name: github-pages
-
-    steps: # key value pairs, step starts with `-`
-#      - name: Output Github context
-#        run: echo "${{ toJSON(github) }}" # GitHub action context, GitHub actions expressions
-
+  build-marketing:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4  # Uses existed GitHub Action | actions/checkout@v4 https://github.com/marketplace/actions/checkout
+      - name: Install Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+      - name: Install dependents and build
+        working-directory: projects/marketing
+        run: |
+          npm ci
+          npm run build
+        env:
+          PRODUCTION_DOMAIN: ${{ secrets.PRODUCTION_DOMAIN }}
+      - name: Upload artifact
+        working-directory: projects/marketing
+        uses: actions/upload-pages-artifact@v3
+        with:
+          name: dist-files-marketing
+          path: dist
+  build-auth:
+    runs-on: ubuntu-latest
+    steps:
       - name: Checkout repository
         uses: actions/checkout@v4  # Uses existed GitHub Action | actions/checkout@v4 https://github.com/marketplace/actions/checkout
 
@@ -34,40 +52,6 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 18
-
-      - name: Container - Install dependents and build
-        run: |
-          npm ci # ci - uses package-lock.json dependencies or use `npm install`
-          npm run build
-        env:
-          PRODUCTION_DOMAIN: ${{ secrets.PRODUCTION_DOMAIN }}
-
-      - name: Marketing - Install dependents and build
-        working-directory: projects/marketing
-        run: |
-          npm ci
-          npm run build
-        env:
-            PRODUCTION_DOMAIN: ${{ secrets.PRODUCTION_DOMAIN }}
-      - name: Marketing - move build files into 'container/latest/marketing/latest' directory
-        working-directory: projects/marketing
-        run: |
-          ls dist/
-          mv dist/* ../container/dist/container/latest
-
-      - name: Dashboard - Install dependents and build
-        working-directory: projects/dashboard
-        run: |
-          npm ci
-          npm run build
-        env:
-          PRODUCTION_DOMAIN: ${{ secrets.PRODUCTION_DOMAIN }}
-      - name: Dashboard - move build files into 'container/latest/marketing/latest' directory
-        working-directory: projects/dashboard
-        run: |
-          ls dist/
-          mv dist/* ../container/dist/container/latest
-
       - name: Auth - Install dependents and build
         working-directory: projects/auth
         run: |
@@ -75,26 +59,80 @@ jobs:
           npm run build
         env:
           PRODUCTION_DOMAIN: ${{ secrets.PRODUCTION_DOMAIN }}
-      - name: Auth - move build files into 'container/latest/auth/latest' directory
+      - name: Upload artifact
         working-directory: projects/auth
-        run: |
-          ls dist/
-          mv dist/* ../container/dist/container/latest    
+        uses: actions/upload-pages-artifact@v3
+        with:
+          name: dist-files-auth
+          path: dist
+  build-dashboard:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4  # Uses existed GitHub Action | actions/checkout@v4 https://github.com/marketplace/actions/checkout
 
+      - name: Install Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+      - name: Dashboard - Install dependents and build
+        working-directory: projects/dashboard
+        run: |
+          npm ci
+          npm run build
+        env:
+          PRODUCTION_DOMAIN: ${{ secrets.PRODUCTION_DOMAIN }}
+      - name: Upload artifact
+        working-directory: projects/dashboard
+        uses: actions/upload-pages-artifact@v3
+        with:
+          name: dist-files-dashboard
+          path: dist
+  build-container: # name of job
+    runs-on: ubuntu-latest # env
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4  # Uses existed GitHub Action | actions/checkout@v4 https://github.com/marketplace/actions/checkout
+      - name: Install Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+      - name: Install dependents and build
+        run: |
+          npm ci # ci - uses package-lock.json dependencies or use `npm install`
+          npm run build
+        env:
+          PRODUCTION_DOMAIN: ${{ secrets.PRODUCTION_DOMAIN }}
       - name: List generated files
         run: |
           ls dist/container/latest
           ls dist/container/latest/marketing/latest
           ls dist/container/latest/dashboard/latest
           ls dist/container/latest/auth/latest
-
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          name: dist-files-container
+          path: dist/container/latest/
+  deploy:
+    needs: [ build-marketing, build-auth, build-dashboard, build-container ]
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+    steps:
       - name: Setup GitHub Pages
         uses: actions/configure-pages@v5
-
+      - name: Get artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: [dist-files-marketing, dist-files-auth, dist-files-dashboard, dist-files-container]
+      - name: List generated files
+        run: |
+          ls
       - name: Load artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: "projects/container/dist/container/latest/"  # or "build" for React
-
+          path: "/"
+#          path: "projects/container/dist/container/latest/"  # or "build" for React
       - name: Deploy on GitHub Pages
         uses: actions/deploy-pages@v4
