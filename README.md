@@ -1,7 +1,8 @@
-# microfrontend
-## microfrontend architecture
+# Microfrontends
+## Microfrontends architecture - R&D project
 
-## steps
+## Steps
+```cmd
 1. mkdir /products
 2. cd /products
 3. npm init -y
@@ -9,6 +10,10 @@
 5. mkdir /container
 6. npm init -y
 7. npm install webpack@5.88.0 webpack-cli@4.10.0 webpack-dev-server@4.7.4 html-webpack-plugin@5.5.0 nodemon --save-exact
+```
 
-## visit page
+## Docs GitHub actions
+https://docs.github.com/en/actions
+
+## Visit GitHub page
 https://olhatodorashko.github.io/microfrontend/

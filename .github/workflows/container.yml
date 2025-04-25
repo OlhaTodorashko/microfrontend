@@ -87,6 +87,8 @@ jobs:
           path: projects/dashboard/dist
   build-container:
     runs-on: ubuntu-latest
+    outputs:
+      html-file: ${{ steps.publish.outputs.file-name }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -101,6 +103,9 @@ jobs:
           npm run build
         env:
           PRODUCTION_DOMAIN: ${{ secrets.PRODUCTION_DOMAIN }}
+      - name: Publish js file name
+        id: publish
+        run: find projects/container/dist/container/latest/*.html -type -f -execdir echo 'file-name={}' >> $GITHUB_OUTPUT ';'
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
@@ -133,6 +138,8 @@ jobs:
       - name: List generated files
         run: |
           ls
+      - name: Output file name
+        run: echo "${{ needs.build-container.outputs.html-file }}"
       - name: Load pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
