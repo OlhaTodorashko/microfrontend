@@ -32,14 +32,16 @@ jobs:
       - name: Install dependents and build
         working-directory: projects/marketing
         run: |
-          npm ci
+          npm install
           npm run build
         env:
           PRODUCTION_DOMAIN: ${{ secrets.PRODUCTION_DOMAIN }}
       - name: Debug upload contents
         run: |
           echo "Listing dist contents:"
+          ls
           ls config/
+          ls dist
           ls -la ./dist
       - name: Upload artifact
         uses: actions/upload-artifact@v4
