@@ -36,11 +36,15 @@ jobs:
           npm run build
         env:
           PRODUCTION_DOMAIN: ${{ secrets.PRODUCTION_DOMAIN }}
+      - name: Debug upload contents
+        run: |
+          echo "Listing dist contents:"
+          ls -la ./dist
       - name: Upload artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: dist-files-marketing
-          path: dist
+          path: ./dist
   build-auth:
     runs-on: ubuntu-latest
     steps:
@@ -58,11 +62,15 @@ jobs:
           npm run build
         env:
           PRODUCTION_DOMAIN: ${{ secrets.PRODUCTION_DOMAIN }}
+      - name: Debug upload contents
+        run: |
+          echo "Listing dist contents:"
+          ls -la ./dist
       - name: Upload artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: dist-files-auth
-          path: dist
+          path: ./dist
   build-dashboard:
     runs-on: ubuntu-latest
     steps:
@@ -80,11 +88,15 @@ jobs:
           npm run build
         env:
           PRODUCTION_DOMAIN: ${{ secrets.PRODUCTION_DOMAIN }}
+      - name: Debug upload contents
+        run: |
+          echo "Listing dist contents:"
+          ls -la ./dist
       - name: Upload artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: dist-files-dashboard
-          path: dist
+          path: ./dist
   build-container: # name of job
     runs-on: ubuntu-latest # env
     steps:
@@ -103,11 +115,15 @@ jobs:
       - name: List generated files
         run: |
           ls dist/container/latest
+      - name: Debug upload contents
+        run: |
+          echo "Listing dist contents:"
+          ls -la ./dist
       - name: Upload artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: dist-files-container
-          path: dist/container/latest/
+          path: ./dist/container/latest/
   deploy:
     needs: [ build-marketing, build-auth, build-dashboard, build-container ]
     runs-on: ubuntu-latest
