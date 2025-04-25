@@ -10,9 +10,9 @@ on: # trigger on [push, workflow_dispatch]
       - 'projects/**'
   workflow_dispatch: # allow manual trigger workflow. Other: repository_dispatch (REST API trigger workflow), schedule (workflow is scheduled), workflow_call (can be called by other workflow) - github actions events
 
-defaults:
-  run:
-    working-directory: projects/container
+#defaults:
+#  run:
+#    working-directory: projects/container
 
 permissions:
   contents: read
@@ -43,8 +43,7 @@ jobs:
         run: |
           echo "Listing dist contents:"
           ls -1 | xargs realpath
-          ls 
-          ls -la ./dist
+          ls
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
@@ -112,6 +111,7 @@ jobs:
         with:
           node-version: 18
       - name: Install dependents and build
+        working-directory: projects/container
         run: |
           npm ci # ci - uses package-lock.json dependencies or use `npm install`
           npm run build
