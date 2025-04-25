@@ -32,8 +32,11 @@ jobs:
       - name: Install dependents and build
         working-directory: projects/marketing
         run: |
+          ls
           npm install
+          ls
           npm run build
+          ls
         env:
           PRODUCTION_DOMAIN: ${{ secrets.PRODUCTION_DOMAIN }}
       - name: Debug upload contents
