@@ -170,7 +170,8 @@ jobs:
           path: "./"
       - name: Deploy on GitHub Pages
         uses: actions/deploy-pages@v4
-  report:
+  failure-report:
+    needs: [ deploy ]
     if: ${{ failure() }}
     runs-on: ubuntu-latest
     steps:
