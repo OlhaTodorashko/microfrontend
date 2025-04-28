@@ -131,6 +131,7 @@ jobs:
       - name: Upload artifact report
         if: ${{ failure() && steps.run-upload-artifact-container.outcome == 'failure' }}
         run: |
+          echo "${{ needs.build-container.outputs.main-js-file }}"
           ls projects
           ls projects/container
           ls projects/container/dist
@@ -178,4 +179,4 @@ jobs:
       - name: Output information
         run: |
           echo "Something went wrong"
-          echo "${{ github }}"
+          echo "${{ toJSON(github) }}"
