@@ -45,7 +45,7 @@ jobs:
         id: upload-artifact
         uses: actions/upload-artifact@v4
         with:
-          name: dist-files-${{ matrix.project-name }}
+          name: dist-files-${{ matrix.project-name }} # will be used in step - actions/download-artifact@v4
           path: projects/${{ matrix.project-name }}/dist
       - name: Upload artifact report
         if: ${{ failure() && steps.run-upload-artifact.outcome == 'failure' }}
@@ -53,86 +53,6 @@ jobs:
           ls projects
           ls projects/${{ matrix.project-name }}
           ls projects/${{ matrix.project-name }}/dist
-#  build-marketing:
-#    runs-on: ubuntu-latest
-#    steps:
-#      - name: Checkout repository
-#        uses: actions/checkout@v4  # Uses existed GitHub Action | actions/checkout@v4 https://github.com/marketplace/actions/checkout
-#      - name: Install Node.js
-#        uses: actions/setup-node@v4
-#        with:
-#          node-version: 18
-#      - name: Install dependents and build
-#        working-directory: projects/marketing
-#        run: |
-#          npm ci
-#          npm run build
-#      - name: Upload artifact
-#        id: run-upload-artifact-marketing
-#        uses: actions/upload-artifact@v4
-#        with:
-#          name: dist-files-marketing
-#          path: projects/marketing/dist
-#      - name: Upload artifact report
-#        if: ${{ failure() && steps.run-upload-artifact-marketing.outcome == 'failure' }}
-#        run: |
-#          ls projects
-#          ls projects/marketing
-#          ls projects/marketing/dist
-#  build-auth:
-#    runs-on: ubuntu-latest
-#    steps:
-#      - name: Checkout repository
-#        uses: actions/checkout@v4
-#
-#      - name: Install Node.js
-#        uses: actions/setup-node@v4
-#        with:
-#          node-version: 18
-#      - name: Auth - Install dependents and build
-#        working-directory: projects/auth
-#        run: |
-#          npm ci
-#          npm run build
-#      - name: Upload artifact
-#        uses: actions/upload-artifact@v4
-#        id: run-upload-artifact-auth
-#        with:
-#          name: dist-files-auth
-#          path: projects/auth/dist
-#      - name: Upload artifact report
-#        if: ${{ failure() && steps.run-upload-artifact-auth.outcome == 'failure' }}
-#        run: |
-#          ls projects
-#          ls projects/auth
-#          ls projects/auth/dist
-#  build-dashboard:
-#    runs-on: ubuntu-latest
-#    steps:
-#      - name: Checkout repository
-#        uses: actions/checkout@v4
-#
-#      - name: Install Node.js
-#        uses: actions/setup-node@v4
-#        with:
-#          node-version: 18
-#      - name: Dashboard - Install dependents and build
-#        working-directory: projects/dashboard
-#        run: |
-#          npm ci
-#          npm run build
-#      - name: Upload artifact
-#        id: run-upload-artifact-dashboard
-#        uses: actions/upload-artifact@v4
-#        with:
-#          name: dist-files-dashboard
-#          path: projects/dashboard/dist
-#      - name: Upload artifact report
-#        if: ${{ failure() && steps.run-upload-artifact-dashboard.outcome == 'failure' }}
-#        run: |
-#          ls projects
-#          ls projects/dashboard
-#          ls projects/dashboard/dist
   build-container:
     runs-on: ubuntu-latest
     outputs:
