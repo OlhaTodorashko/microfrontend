@@ -167,7 +167,7 @@ jobs:
           ls projects/container/dist
           ls projects/container/container/latest/
   deploy:
-    needs: [ build-marketing, build-auth, build-dashboard, build-container ]
+    needs: [ build-projects, build-container ]
     runs-on: ubuntu-latest
     environment:
       name: github-pages
