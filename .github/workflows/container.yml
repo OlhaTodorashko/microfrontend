@@ -121,9 +121,6 @@ jobs:
           path: "./"
       - name: Deploy on GitHub Pages
         uses: actions/deploy-pages@v4
-      - name: Output information
-        run: |
-          echo "Live URL: ${{ secrets.PRODUCTION_DOMAIN }}"
   failure-report:
     needs: [ deploy ]
     if: ${{ failure() }}
