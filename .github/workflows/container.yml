@@ -17,7 +17,7 @@ on:
 permissions:
   contents: read
   pages: write
-#  id-token: write # allows the workflow to request an OIDC (OpenID Connect) token, authenticate to external services (e.g., AWS, Azure, GCP) without secrets
+  id-token: write # allows the workflow to request an OIDC (OpenID Connect) token, authenticate to external services (e.g., AWS, Azure, GCP) without secrets
 
 env:
   PRODUCTION_DOMAIN: ${{ secrets.PRODUCTION_DOMAIN }}
