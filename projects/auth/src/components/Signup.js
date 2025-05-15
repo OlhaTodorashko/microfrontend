@@ -19,7 +19,7 @@ function Copyright() {
       {'Copyright © '}
       <MaterialLink color="inherit" href="https://github.com/OlhaTodorashko">
         Olha Todorashko
-      </MaterialLink>
+      </MaterialLink>{' '}
       {new Date().getFullYear()}
       {'.'}
     </Typography>
