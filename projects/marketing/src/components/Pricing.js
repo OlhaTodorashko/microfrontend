@@ -17,8 +17,8 @@ function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
       {'Copyright © '}
-      <Link color="inherit" href="https://material-ui.com/">
-        Your Website
+      <Link color="inherit" href="https://github.com/OlhaTodorashko">
+        Olha Todorashko
       </Link>{' '}
       {new Date().getFullYear()}
       {'.'}
@@ -245,6 +245,14 @@ export default function Pricing() {
           ))}
         </Grid>
         <Box mt={5}>
+          <Typography
+            variant="subtitle1"
+            align="center"
+            color="textSecondary"
+            component="p"
+          >
+            MIT License
+          </Typography>
           <Copyright />
         </Box>
       </Container>

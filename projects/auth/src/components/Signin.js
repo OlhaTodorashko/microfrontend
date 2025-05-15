@@ -10,15 +10,16 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
+import MaterialLink from '@material-ui/core/Link';
 import { Link } from 'react-router-dom';
 
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
       {'Copyright © '}
-      <Link color="inherit" to="/">
-        Your Website
-      </Link>{' '}
+      <MaterialLink color="inherit" href="https://github.com/OlhaTodorashko">
+        Olha Todorashko
+      </MaterialLink>{' '}
       {new Date().getFullYear()}
       {'.'}
     </Typography>
@@ -119,6 +120,14 @@ export default function SignIn({ onSignIn }) {
         </form>
       </div>
       <Box mt={8}>
+        <Typography
+          variant="subtitle1"
+          align="center"
+          color="textSecondary"
+          component="p"
+        >
+          MIT License
+        </Typography>
         <Copyright />
       </Box>
     </Container>

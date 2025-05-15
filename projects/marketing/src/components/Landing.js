@@ -15,8 +15,8 @@ function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
       {'Copyright © '}
-      <MaterialLink component={Link} to="/" color="inherit">
-        Your Website
+      <MaterialLink color="inherit" href="https://github.com/OlhaTodorashko">
+        Olha Todorashko
       </MaterialLink>{' '}
       {new Date().getFullYear()}
       {'.'}
@@ -155,7 +155,7 @@ export default function Album() {
           color="textSecondary"
           component="p"
         >
-          Something here to give the footer a purpose!
+          MIT License
         </Typography>
         <Copyright />
       </footer>
