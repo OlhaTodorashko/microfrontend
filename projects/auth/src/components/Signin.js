@@ -62,6 +62,14 @@ export default function SignIn({ onSignIn }) {
         <Typography component="h1" variant="h5">
           Sign in
         </Typography>
+        <Typography
+          variant="h5"
+          align="center"
+          color="textSecondary"
+          paragraph
+        >
+          !!! Enter any value in the fields: <strong>email, password</strong> and click <strong>the button</strong> to be redirected to Dashboard app
+        </Typography>
         <form
           onSubmit={(e) => e.preventDefault()}
           className={classes.form}

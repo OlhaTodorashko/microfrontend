@@ -79,7 +79,7 @@ export default function Album() {
               color="textPrimary"
               gutterBottom
             >
-              Home Page
+              Home Page - Marketing App
             </Typography>
             <Typography
               variant="h5"
@@ -87,9 +87,8 @@ export default function Album() {
               color="textSecondary"
               paragraph
             >
-              Something short and leading about the collection below—its
-              contents, the creator, etc. Make it short and sweet, but not too
-              short so folks don&apos;t simply skip over it entirely.
+              This project is a research and development prototype of a <strong>microfrontend architecture</strong> that integrates
+              multiple independently developed frontend modules into a single container application.
             </Typography>
             <div className={classes.heroButtons}>
               <Grid container spacing={2} justifyContent="center">
@@ -119,7 +118,7 @@ export default function Album() {
                 <Card className={classes.card}>
                   <CardMedia
                     className={classes.cardMedia}
-                    image="https://source.unsplash.com/random"
+                    image="https://picsum.photos/400/300?random=9"
                     title="Image title"
                   />
                   <CardContent className={classes.cardContent}>
